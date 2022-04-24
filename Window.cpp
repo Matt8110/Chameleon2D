@@ -15,14 +15,21 @@ void CWindow::init(int width, int height, const std::string& title)
 
 void CWindow::setViewPosition(const sf::Vector2f& position)
 {
-    m_view = sf::View(sf::Vector2f(position.x + VIEW_WIDTH/2, position.y + VIEW_HEIGHT/2), sf::Vector2f(VIEW_WIDTH, VIEW_HEIGHT));
+    m_view = sf::View(sf::Vector2f(position.x + m_viewSize.x/2, position.y + m_viewSize.y/2), sf::Vector2f(m_viewSize.x, m_viewSize.y));
+    m_sfmlWindow->setView(m_view);
+}
+
+void CWindow::setViewSize(const sf::Vector2f& size)
+{
+    m_viewSize = size;
+    m_view.setSize(m_viewSize);
     m_sfmlWindow->setView(m_view);
 }
 
 sf::Vector2f CWindow::getViewPosition()
 {
     sf::Vector2f viewCenter = m_view.getCenter();
-    return sf::Vector2f(viewCenter.x - VIEW_WIDTH/2, viewCenter.y - VIEW_HEIGHT/2);
+    return sf::Vector2f(viewCenter.x - m_viewSize.x/2, viewCenter.y - m_viewSize.y/2);
 }
 
 sf::Vector2f CWindow::getViewSize()
