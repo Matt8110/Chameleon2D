@@ -3,9 +3,6 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#define VIEW_WIDTH 160
-#define VIEW_HEIGHT 120
-
 class CWindow
 {
 public:
@@ -16,6 +13,7 @@ public:
     void setFrameLimit(int limit);
     sf::RenderWindow* getSFMLWindow();
     void setViewPosition(const sf::Vector2f& position);
+    void setViewSize(const sf::Vector2f& size);
     sf::Vector2f getViewPosition();
     sf::Vector2f getViewSize();
     void setBackgroundColor(const sf::Color& color);
@@ -25,4 +23,5 @@ private:
     sf::RenderWindow* m_sfmlWindow;
     sf::View m_view;
     sf::Color m_backgroundColor = {0, 0, 0};
+    sf::Vector2f m_viewSize = {426, 240};
 };
